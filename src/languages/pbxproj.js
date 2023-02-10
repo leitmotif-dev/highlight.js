@@ -7,21 +7,49 @@ Website: https://en.wikipedia.org/wiki/Property_list
 /** @type LanguageFn */
 export default function(hljs) {
  
-  const NUMBERS = {
-    className: 'number',
-    variants: [
-      { begin: '\\b(0b[01\']+)' },
-      { begin: '(-?)\\b([\\d\']+(\\.[\\d\']*)?|\\.[\\d\']+)((ll|LL|l|L)(u|U)?|(u|U)(ll|LL|l|L)?|f|F|b|B)' },
-      { begin: '(-?)(\\b0[xX][a-fA-F0-9\']+|(\\b[\\d\']+(\\.[\\d\']*)?|\\.[\\d\']+)([eE][-+]?[\\d\']+)?)' }
-    ],
-    relevance: 0
-  };
-
   const LITERALS = [
     "YES",
+    "YES_AGGRESSIVE",
+    "YES_ERROR",
     "NO",
-    "Automatic"
+    "Automatic",
+    "PBXBuildFile",
+    "PBXSourcesBuildPhase",
+    "PBXBuildFile",
+    "PBXGroup",
+    "PBXFileReference",
+    "PBXCopyFilesBuildPhase",
+    "PBXFrameworksBuildPhase",
+    "XCBuildConfiguration",
+    "PBXVariantGroup",
+    "PBXTargetDependency",
+    "PBXShellScriptBuildPhase",
+    "PBXResourcesBuildPhase",
+    "PBXProject",
+    "PBXNativeTarget",
+    "PBXHeadersBuildPhase",
   ];
+
+  const ATTRIBUTES = [
+    "isa",
+    "name",
+    "buildSettings",
+    "fileRef",
+    "sourceTree",
+    "path",
+    "children",
+    "fileEncoding",
+    "lastKnownFileType",
+    "files",
+
+];
+
+  const SIMPLE_NUMBER_RE = '\\b\\d+(\\.\\d+)?\\b';
+  const NUMBER = {
+    className: 'number',
+    begin: SIMPLE_NUMBER_RE,
+    relevance: 0
+  };
 
   return {
     name: 'Xcode Project Data',
@@ -31,9 +59,14 @@ export default function(hljs) {
     },
     disableAutodetect: true,
     contains: [
+      NUMBER,
       hljs.QUOTE_STRING_MODE,
       hljs.C_LINE_COMMENT_MODE,
-      hljs.C_BLOCK_COMMENT_MODE
+      hljs.C_BLOCK_COMMENT_MODE,
+      {
+        className: 'attr',
+        begin: '\\b(' + ATTRIBUTES.join('|') + ')\\b'
+      }
     ]
   };
 }
