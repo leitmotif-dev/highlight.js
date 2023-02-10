@@ -155,6 +155,7 @@ The table below shows the full list of languages (and corresponding classes/alia
 | Oxygene                 | oxygene                |         |
 | PF                      | pf, pf.conf            |         |
 | PHP                     | php                    |         |
+| Xcode Project Data      | pbxproj, openstep_plist|         |
 | Papyrus                 | papyrus, psc           |[highlightjs-papyrus](https://github.com/Pickysaurus/highlightjs-papyrus)    |
 | Parser3                 | parser3                |         |
 | Perl                    | perl, pl, pm           |         |
