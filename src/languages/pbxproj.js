@@ -28,6 +28,10 @@ export default function(hljs) {
     "PBXProject",
     "PBXNativeTarget",
     "PBXHeadersBuildPhase",
+    "XCSwiftPackageProductDependency",
+    "XCRemoteSwiftPackageReference",
+    "XCConfigurationList",
+    
   ];
 
   const ATTRIBUTES = [
